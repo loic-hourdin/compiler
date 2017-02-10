@@ -1,0 +1,95 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+
+% --- START - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+\usepackage[vlined,ruled]{algorithm2e}
+\usepackage{amssymb}
+\usepackage{amsmath,alltt}
+\newenvironment{texsci}[1]{%
+\vspace{1cm}
+\renewcommand{\algorithmcfname}{Algorithm}
+\begin{algorithm}[H]
+\label{#1}
+\caption{#1}
+\SetKwInOut{Constant}{Constant}
+\SetKwInOut{Input}{Input}
+\SetKwInOut{Output}{Output}
+\SetKwInOut{Global}{Global}
+\SetKwInOut{Local}{Local}
+}{%
+\end{algorithm}
+\vspace{1cm}
+}
+\newcommand{\true}{\mbox{\it true}}
+\newcommand{\false}{\mbox{\it false}}
+\newcommand{\Boolean}{\{\true,\false\}}
+\newcommand{\Integer}{\mathbb{Z}}
+\newcommand{\Real}{\mathbb{R}}
+% --- END - HEADER TO SUPPORT TexSci ALGORITHMS IN LaTeX DOCUMENTS
+
+\title{TexSci Test Suite -- Test 08\\ Test basique}
+\date{}
+
+\begin{document}
+\maketitle
+
+Test de conditionnelle avec test basique.
+
+\begin{texsci}{main}
+\Local{$a \in \Integer$}
+\BlankLine
+
+$a \leftarrow -2$\;
+$a \leftarrow 2-2$\;
+$a \leftarrow -2-2$\;
+
+$a \leftarrow 2$\;
+
+\If{$ 2 $}{$\mbox{printText($"?/2 is TRUE\n"$)}$\;}
+\If{$ 1 $}{$\mbox{printText($"?/1 is TRUE\n"$)}$\;}
+\If{$ 0 $}{$\mbox{printText($"?/0 is TRUE\n"$)}$\;}
+
+\If{$ 1<2 $}{$\mbox{printText($"Y/< 1/1\n"$)}$\;}
+\If{$ 1<0 $}{$\mbox{printText($"N/< 1/1\n"$)}$\;}
+\If{$ 1>0 $}{$\mbox{printText($"Y/> 1/1\n"$)}$\;}
+\If{$ 1>2 $}{$\mbox{printText($"N/> 1/1\n"$)}$\;}
+
+\If{$ 1<=2 $}{$\mbox{printText($"Y/<= 1/2\n"$)}$\;}
+\If{$ 1<=1 $}{$\mbox{printText($"Y/<= 2/2\n"$)}$\;}
+\If{$ 1<=0 $}{$\mbox{printText($"N/<= 1/2\n"$)}$\;}
+
+\If{$ 1>=0 $}{$\mbox{printText($"Y/>= 1/2\n"$)}$\;}
+\If{$ 1>=1 $}{$\mbox{printText($"Y/>= 2/2\n"$)}$\;}
+\If{$ 1>=2 $}{$\mbox{printText($"N/>= 1/2\n"$)}$\;}
+
+\If{$ 1 \wedge (2=2) $}{$\mbox{printText($"Y/ET 1/1\n"$)}$\;}
+\If{$ 1 \wedge (2=1) $}{$\mbox{printText($"N/ET 1/1\n"$)}$\;}
+
+\If{$ 0 \vee 1 $}{$\mbox{printText($"Y/OU 1/1\n"$)}$\;}
+\If{$ 0 \vee 0 $}{$\mbox{printText($"N/OU 1/1\n"$)}$\;}
+
+\eIf{$1$}{
+	$\mbox{printText($"Y/EIF TRUE 1/2\n"$)}$\;
+}{
+	$\mbox{printText($"N/EIF FALSE 1/2\n"$)}$\;
+}
+\eIf{$0$}{
+	$\mbox{printText($"N/EIF TRUE 2/2\n"$)}$\;
+}{
+	$\mbox{printText($"Y/EIF FALSE 2/2\n"$)}$\;
+}
+
+\While{$ \neg a = 0$} {
+	$\mbox{printText($"Y/WHILE (should be print 2 times)\n"$)}$\;
+	$a \leftarrow a - 1$\;
+}
+
+\For{$a \leftarrow 0$ \KwTo $3$} {
+	$\mbox{printText($"Y/FOR (should be print 3 times)\n"$)}$\;
+}
+
+$\mbox{printText($"FIN !!!"$)}$\;
+\end{texsci}
+
+\end{document}

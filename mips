@@ -1,0 +1,24 @@
+		.data
+val_a:	.word	0
+val_b:	.word	0
+text0:	.asciiz	"NOT "
+text1:	.asciiz	"OK !!!"
+		.text
+main:	li $t0, 0
+sw $t0, val_a
+li $t0, 10
+sw $t0, val_b
+lw $t0, val_a
+bne $t0, 1, lab_l0 
+lw $t0, val_a
+bne $t0, 1, lab_l1 
+lab_l0:
+li $v0, 4
+la $a0, text0
+syscall
+lab_l1:
+li $v0, 4
+la $a0, text1
+syscall
+li $v0, 10
+syscall
